@@ -1,7 +1,7 @@
-import path from 'path';
-import sqlite3 from 'sqlite3';
-import { open } from 'sqlite';
-import { fileURLToPath } from 'url';
+// import path from 'path';
+// import sqlite3 from 'sqlite3';
+// import { open } from 'sqlite';
+// import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
 import { createClient } from '@libsql/client';
 
