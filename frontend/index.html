@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo Webapp</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-actions">
+            <button class="add-btn" id="addBtn">Add a new task</button>
+        </div>
+        <div>
+            <!-- Continue here  -->
+            <select class="filter-select"> 
+                <option value="all">all</option>
+                <option value="todo">to do</option>
+                <option value="inprogress">in-progress</option>
+                <option value="done">done</option>
+            </select>
+        </div>
+    </nav>
+    <main>
+        <p id="taskCount">Showing 0 out of 0 tasks.</p>
+        <div class="cards-container" id="cardsContainer">
+            <!-- <div class="card-item">
+                <h1>title</h1>
+                <p>description</p>
+                <p>status</p>
+                <p>created_date</p>
+            </div> -->
+        </div>
+    </main>
+    <!-- Modals -->
+    <div class="add-modal" id="addModal">
+        <div class="modal-content">
+            <span class="close" id="close">&times;</span>
+            <form class="form-content" id="modalForm">
+                <h2>Title</h2>
+                <input class="title-input" type="text" name="title" id="title" placeholder="task title..">
+                <h3>Description</h3>
+                <textarea class="description-input" name="description" id="description" rows="10" cols="50" placeholder="Description..."></textarea>
+                <div class="action-buttons">
+                    <button class="cancel-btn" type="button" id="cancelBtn">Cancel</button>
+                    <button class="submit-btn" type="submit">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="edit-modal" id="editModal">
+        <div class="modal-content">
+            <span class="edit-close" id="editClose">&times;</span>
+            <form class="form-content" id="editForm">
+                <h2>Title</h2>
+                <input class="title-input" type="text" name="title" id="editTitle" placeholder="task title..">
+                <h3>Description</h3>
+                <textarea class="description-input" name="description" id="editDescription" rows="10" cols="50" placeholder="Description..."></textarea>
+                <h3>Status</h3>
+                <select class="status-options" id="statusOptions">
+                    <option value="todo">to do</option>
+                    <option value="inprogress">in-progress</option>
+                    <option value="done">done</option>
+                </select>
+                <div class="action-buttons">
+                    <button class="cancel-btn" type="button" id="editCancelBtn">Cancel</button>
+                    <button class="submit-btn" type="submit">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
