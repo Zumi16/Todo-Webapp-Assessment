@@ -1,4 +1,4 @@
-# Notes Webapp (Fullstack)
+# Todo Webapp (Fullstack)
 
 A simple task/notes board. Vanilla HTML/CSS/JS frontend, Express + SQLite backend.
 
