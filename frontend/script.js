@@ -25,7 +25,7 @@ let taskData = []
 
 async function fetchTaskData() {
     try {
-        const response = await fetch(`${API_URL}/api/tasks`);
+        const response = await fetch(`${API_URL}`);
 
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
@@ -130,7 +130,7 @@ cardsContainer.addEventListener('click', async (event) => {
             }
 
             try {
-                const response = await fetch(`${API_URL}/api/tasks/${taskId}`, {
+                const response = await fetch(`${API_URL}/${taskId}`, {
                     method: 'DELETE'
                 });
 
@@ -151,7 +151,7 @@ form.addEventListener('submit', async (event) => {
 
     data.status = 0;
     try {
-        const response = await fetch(`${API_URL}/api/tasks`, {
+        const response = await fetch(`${API_URL}`, {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json',
@@ -192,7 +192,7 @@ editForm.addEventListener('submit', async (event) => {
     })()
 
     try {
-        const response = await fetch(`${API_URL}/api/tasks/${taskId}`, {
+        const response = await fetch(`${API_URL}/${taskId}`, {
             method: 'PUT',
             headers: {
                 'Content-type': 'application/json',
