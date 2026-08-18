@@ -7,6 +7,13 @@ import { createClient } from '@libsql/client';
 
 dotenv.config();
 
+const url = process.env.TURSO_DATABASE_URL;
+const authToken = process.env.TURSO_AUTH_TOKEN;
+
+if (!url || !authToken) {
+    console.error("CRITICAL: TURSO_DATABASE_URL or TURSO_AUTH_TOKEN is missing from environment variables.");
+}
+
 export const db = createClient({
     url: process.env.TURSO_DATABASE_URL,
     authToken: process.env.TURSO_AUTH_TOKEN,
