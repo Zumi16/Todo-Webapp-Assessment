@@ -1,3 +1,5 @@
+import API_URL from "./config";
+
 const cardsContainer = document.getElementById("cardsContainer");
 const addButton = document.getElementById("addBtn");
 const addModal = document.getElementById("addModal");
@@ -23,7 +25,7 @@ let taskData = []
 
 async function fetchTaskData() {
     try {
-        const response = await fetch("http://localhost:3000/api/tasks");
+        const response = await fetch(`${API_URL}/api/tasks`);
 
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
@@ -128,7 +130,7 @@ cardsContainer.addEventListener('click', async (event) => {
             }
 
             try {
-                const response = await fetch(`http://localhost:3000/api/tasks/${taskId}`, {
+                const response = await fetch(`${API_URL}/api/tasks/${taskId}`, {
                     method: 'DELETE'
                 });
 
@@ -149,7 +151,7 @@ form.addEventListener('submit', async (event) => {
 
     data.status = 0;
     try {
-        const response = await fetch("http://localhost:3000/api/tasks", {
+        const response = await fetch(`${API_URL}/api/tasks`, {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json',
@@ -190,7 +192,7 @@ editForm.addEventListener('submit', async (event) => {
     })()
 
     try {
-        const response = await fetch(`http://localhost:3000/api/tasks/${taskId}`, {
+        const response = await fetch(`${API_URL}/api/tasks/${taskId}`, {
             method: 'PUT',
             headers: {
                 'Content-type': 'application/json',
