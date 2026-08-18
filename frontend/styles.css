@@ -89,15 +89,23 @@ main {
 }
 
 /* Modal Styles */
-/* Add Modal */
-.add-modal {
+body.modal-open {
+    overflow: hidden;
+}
+
+
+/* Add Modal & Edit Modal share the same overlay behaviour */
+.add-modal,
+.edit-modal {
     display: none;
     position: fixed;
-    top: 0;
-    left: 0;
+    inset: 0;
     z-index: 999;
     width: 100%;
     height: 100%;
+    padding: 20px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     background-color: rgba(0, 0, 0, 0.4);
 }
 
@@ -105,11 +113,11 @@ main {
     position: relative;
     background-color: #fefefe;
     margin: 10% auto;
-    /* 15% from the top and centered */
+    /* centered, pushed down from the top */
     padding: 30px;
     border: 1px solid #888;
-
-    width: 30%;
+    width: 100%;
+    max-width: 480px;
     border-radius: 10px;
 }
 
@@ -119,9 +127,9 @@ main {
     top: 5px;
     right: 15px;
     color: #aaa;
-    float: right;
     font-size: 28px;
     font-weight: bold;
+    line-height: 1;
     cursor: pointer;
 }
 
@@ -134,50 +142,90 @@ main {
 
 .title-input,
 .description-input {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
     padding: 10px;
     border-radius: 5px;
     border: 1px solid black;
     resize: none;
+    font-size: 1rem;
+}
+
+.description-input {
+    min-height: 160px;
 }
 
 .status-options {
     padding: 8px;
     border-radius: 5px;
+    max-width: 100%;
 }
 
 .action-buttons {
     display: flex;
+    flex-wrap: wrap;
     gap: 10px;
     justify-content: right;
 }
 
-.cancel-btn {
-    padding: 5px 8px;
+.cancel-btn,
+.submit-btn {
+    padding: 8px 14px;
     border-radius: 5px;
-    background: crimson;
     color: white;
     cursor: pointer;
     border: none;
+    font-size: 1rem;
+}
+
+.cancel-btn {
+    background: crimson;
 }
 
 .submit-btn {
-    padding: 5px 8px;
-    border-radius: 5px;
     background: #00b300;
-    color: white;
-    cursor: pointer;
-    border: none;
 }
 
-/* Edit Modal */
+/* Mobile */
+@media (max-width: 600px) {
+    .add-modal,
+    .edit-modal {
+        padding: 12px;
+    }
 
-.edit-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 999;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
+    .modal-content {
+        margin: 16px auto 32px;
+        padding: 24px 16px;
+        max-width: 100%;
+    }
+
+    .modal-content h2 {
+        font-size: 1.25rem;
+    }
+
+    .modal-content h3 {
+        font-size: 1rem;
+    }
+
+    .close,
+    .edit-close {
+        top: 4px;
+        right: 8px;
+        font-size: 32px;
+        padding: 4px 8px;
+    }
+
+    .description-input {
+        min-height: 120px;
+    }
+
+    .action-buttons {
+        justify-content: stretch;
+    }
+
+    .action-buttons button {
+        flex: 1;
+        min-height: 44px;
+    }
 }

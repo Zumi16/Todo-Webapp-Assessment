@@ -76,12 +76,23 @@ async function displayCards() {
     renderCards(taskData);
 }
 
+function openModal(modalElement) {
+    modalElement.style.display = "block";
+    document.body.classList.add("modal-open");
+    modalElement.scrollTop = 0;
+}
+
 function closeModal(modalElement) {
     modalElement.style.display = "none";
+    document.body.classList.remove("modal-open");
+}
+
+function isModalOpen(modalElement) {
+    return modalElement.style.display === "block";
 }
 
 addButton.addEventListener("click", (event) => {
-    addModal.style.display = "block";
+    openModal(addModal);
 })
 
 closeBtn.addEventListener("click", () => closeModal(addModal));
@@ -89,12 +100,32 @@ editCloseBtn.addEventListener("click", () => closeModal(editModal));
 cancelBtn.addEventListener("click", () => closeModal(addModal));
 editCancelBtn.addEventListener("click", () => closeModal(editModal));
 
+[addModal, editModal].forEach(modal => {
+    modal.addEventListener("click", (event) => {
+        if (event.target === modal) {
+            closeModal(modal);
+        }
+    });
+});
+
+document.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape") {
+        return;
+    }
+
+    [addModal, editModal].forEach(modal => {
+        if (isModalOpen(modal)) {
+            closeModal(modal);
+        }
+    });
+});
+
 cardsContainer.addEventListener('click', async (event) => {
     const editBtn = event.target.closest?.('.edit-btn');
     const deleteBtn = event.target.closest?.('.delete-btn');
 
     if (editBtn) {
-        editModal.style.display = "block";
+        openModal(editModal);
         const cardElement = event.target.closest?.('.card-item')
         const selectedTask = taskData.find(task => task.id == cardElement.id);
         let statusString = ''
@@ -166,7 +197,7 @@ form.addEventListener('submit', async (event) => {
         const newTask = await response.json();
         console.log(`Task Added:`, newTask);
 
-        addModal.style.display = 'none';
+        closeModal(addModal);
         form.reset();
 
         await displayCards();
@@ -208,7 +239,7 @@ editForm.addEventListener('submit', async (event) => {
             alert("Error:", result.message);
         }
 
-        editModal.style.display = 'none';
+        closeModal(editModal);
         editForm.reset();
 
         await displayCards();
