@@ -1,4 +1,4 @@
-import API_URL from "./config";
+import API_URL from "./config.js";
 
 const cardsContainer = document.getElementById("cardsContainer");
 const addButton = document.getElementById("addBtn");
