@@ -15,8 +15,8 @@ if (!url || !authToken) {
 }
 
 export const db = createClient({
-    url: process.env.TURSO_DATABASE_URL,
-    authToken: process.env.TURSO_AUTH_TOKEN,
+    url: url || 'libsql://dummy-url.turso.io',
+    authToken: authToken || '',
 });
 
 // const __filename = fileURLToPath(import.meta.url);
